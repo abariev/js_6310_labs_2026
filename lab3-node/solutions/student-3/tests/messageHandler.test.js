@@ -69,7 +69,23 @@ describe('Message Handler & Bot Scenarios Tests', () => {
       expect.stringContaining('от 1 до 9')
     );
 
-    await handleMessage(botMock, { chat: { id: 1 }, text: '1 1' }, stateManager);
+    // ДИНАМИЧЕСКИЙ ПОИСК ПУСТОЙ КЛЕТКИ ДЛЯ ТЕСТА
+    const game = stateManager.getGame(1);
+    let emptyRow = 1, emptyCol = 1;
+    for (let r = 0; r < 9; r += 1) {
+      for (let c = 0; c < 9; c += 1) {
+        if (game.puzzle[r][c] === 0) {
+          emptyRow = r + 1;
+          emptyCol = c + 1;
+          break;
+        }
+      }
+      if (game.puzzle[emptyRow - 1][emptyCol - 1] === 0) break;
+    }
+
+    // Отправляем найденные пустые координаты вместо жестких '1 1'
+    await handleMessage(botMock, { chat: { id: 1 }, text: `${emptyRow} ${emptyCol}` }, stateManager);
+    
     expect(stateManager.getState(1)).toBe(FSM_STATES.PLAYING);
     expect(stateManager.getGame(1).hintsRemaining).toBe(0);
 
