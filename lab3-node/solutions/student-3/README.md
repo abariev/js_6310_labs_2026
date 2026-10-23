@@ -55,7 +55,7 @@ npm run dev
 
 ## Примеры работы
 
-![Команда /generate](images/generate.png)
-![Команда /hint](images/hint.png)
-![Команда /solve решение с ошибкой](images/solve1.png)
-![Команда /solve верное решение](images/solve2.png)
+![Команда /generate](images/generate.PNG)
+![Команда /hint](images/hint.PNG)
+![Команда /solve решение с ошибкой](images/solve1.PNG)
+![Команда /solve верное решение](images/solve2.PNG)
