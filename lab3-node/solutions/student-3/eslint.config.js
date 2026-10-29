@@ -9,17 +9,23 @@ export default [
       sourceType: 'module',
       globals: {
         ...globals.node,
-        ...globals.jest
+        ...globals.jest // Обязательно оставляем для прохождения линтера в тестах
       }
     },
     rules: {
+      'no-unused-vars': 'error',
+      'no-undef': 'error',
       'no-var': 'error',
-      // Настроены отступы в 2 пробела с правилом для конструкции switch
-      'indent': ['error', 2, { 'SwitchCase': 1 }],
-      
-      // Дополнительные базовые правила
-      'no-console': 'off',
-      'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }]
+      'indent': [
+        'error',
+        2,
+        {
+          'FunctionDeclaration': {
+            'parameters': 'first'
+          },
+          'MemberExpression': 2
+        }
+      ]
     }
   }
 ];
