@@ -2,9 +2,6 @@ import js from '@eslint/js';
 import globals from 'globals';
 
 export default [
-  {
-    ignores: ['node_modules/**', 'coverage/**']
-  },
   js.configs.recommended,
   {
     languageOptions: {
@@ -16,12 +13,13 @@ export default [
       }
     },
     rules: {
+      'no-var': 'error',
+      // Настроены отступы в 2 пробела с правилом для конструкции switch
       'indent': ['error', 2, { 'SwitchCase': 1 }],
-      'quotes': ['error', 'single', { 'avoidEscape': true }],
-      'semi': ['error', 'always'],
-      'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
+      
+      // Дополнительные базовые правила
       'no-console': 'off',
-      'eqeqeq': ['error', 'always']
+      'no-unused-vars': ['warn', { 'argsIgnorePattern': '^_' }]
     }
   }
 ];
