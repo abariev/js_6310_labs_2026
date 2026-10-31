@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react'
 
 import { type CellData, NumberPanel, SudokuGrid } from '@my-app/ui-library'
-import '@my-app/ui-library/dist/index.css'
+import '@my-app/ui-library/index.css'
 
 import './App.css'
 
